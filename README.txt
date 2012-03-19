@@ -1,1 +1,1 @@
-This repository will have a sliq implementation in python... eventually
+This repository will have a sliq implementation in python... eventually something will be in here.
