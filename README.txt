@@ -1,3 +1,6 @@
-This repository will have a sliq implementation in Python; eventually something will be in here?
+SENG 474
+Authors: Jeremy Ho, Helen Lin
 
-Testing-Helen
+This repository has a sliq implementation in Python
+classlist.py: stores, holds, and performs sliq algorithm
+sliq.py: main function - input & output

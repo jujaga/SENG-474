@@ -1,6 +1,8 @@
+# classlist.py
+# SENG 474
+# Jeremy Ho & Helen Lin
 
-
-class ClassList
+class classlist:
 	"Creates the decision tree."
 
 	# Note: I am changing back to using lists because tuples are immutable
@@ -18,20 +20,8 @@ class ClassList
 		self.classList = []
 		self.attrList = []
 		self.init()
-	
-	
-	# Adds rid to each record
-	# Example: ( 2 records )
-	# [
-	# 	[ rid, age, salary, marital, car ],
-	# 	[ rid, age, salary, marital, car ]
-	# ]
-	def addID():
-		for i in range( self.data ):
-			self.data[i].insert( 0, i )
-	
-	
-	# Creates the classList and attributeList
+
+	# Creates the classlist and attributeList
 	# Example: ( 2 records )
 	#
 	# Attribute List:
@@ -50,14 +40,22 @@ class ClassList
 			row = self.data[i]
 			if j < range( row ) -1:
 				self.attrList.append( row[0: len(row) - 1] )
-			else
+			else:
 				self.classList.append( [ row[0], row[len(row) - 1], 1 ] )
 	
+	# Adds rid to each record
+	# Example: ( 2 records )
+	# [
+	# 	[ rid, age, salary, marital, car ],
+	# 	[ rid, age, salary, marital, car ]
+	# ]
+	def addID():
+		for i in range( self.data ):
+			self.data[i].insert( 0, i )
 	
 	# Sorts the atrribute list base on the column number
-	def sortAtrributeList( columnNumber )
+	def sortAtrributeList( columnNumber ):
 		self.attrList.sort( key=lambda value: value[columnNumber] )
-	
 	
 	# Returns a record from a list with matching rid
 	# The list is either attribute list or classlist
@@ -84,6 +82,4 @@ class ClassList
 		# get attribute records with the same leaf number with the best entropy attribute removed
 		# run doSLIQ again with the new attribute lists
 		# stop when last attribute is used 
-		
-	
-			
+		return 0
