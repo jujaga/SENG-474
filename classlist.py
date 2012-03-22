@@ -20,6 +20,8 @@ class classlist:
 		self.classList = []
 		self.attrList = []
 		self.init()
+		self.totalRecords = len( self.classList )
+		self.doSLIQ( self.attrList )
 
 	# Creates the classlist and attributeList
 	# Example: ( 2 records )
@@ -54,8 +56,8 @@ class classlist:
 			self.data[i].insert( 0, i )
 	
 	# Sorts the atrribute list base on the column number
-	def sortAtrributeList( columnNumber ):
-		self.attrList.sort( key=lambda value: value[columnNumber] )
+	def sortList( attributeList, columnNumber ):
+		attributeList.sort( key=lambda value: value[columnNumber] )
 	
 	# Returns a record from a list with matching rid
 	# The list is either attribute list or classlist
@@ -74,7 +76,32 @@ class classlist:
 		return newAttrList
 		
 		
-	# Perform SLIQ
+	# Returns the entropy calculated by the list of probabilities
+	# make sure the list of probabilities sums up to total
+	def calculateEntropy( probabilities, total ):
+		entropy = 0
+		for probability in probabilities:
+			prob = probability / total 
+			entropy += -1 *  prob  * math.log( prob, 2 )
+		return entropy
+		
+		
+	# Calculate the expected info of an attribute
+	# Example list
+	# 			   (	predictValue1, 	predictValue2, 	predictValue3  )
+	#			[
+	# (attrValue1)	   [	1,			2,			3  		]
+	# (attrValue2)	   [	3,			4,			6  		]	
+	#			]
+	def calculateExpectedInfo( histogramList ):
+		expectedInfo = 0
+		for attrValueRow in histogramList:
+			listSum = sum( attrValueRow )
+			expectedInfo += ( listSum / self.totalRecords ) * self.calculateEntropy( attrValueRow, listSum )
+		return expectedInfo
+	
+	
+	# Perform SLIQ base on the provided attribute list of one type of leaf
 	def doSLIQ( attrLeafList ):
 		# For every attribute in the record calculate best entropy
 		# keep track of the best entropy attribute selected
@@ -82,4 +109,13 @@ class classlist:
 		# get attribute records with the same leaf number with the best entropy attribute removed
 		# run doSLIQ again with the new attribute lists
 		# stop when last attribute is used 
+		
+		for row in attrLeafList:
+			# starting with the first attribute at index 1
+			for i in range( 1, len(row) ):
+				self.sortList( attrLeafList, i )
+				if row[i].isDigit():
+					# do numerical entropy calculation
+				else:
+					# do categorical entropy calculation
 		return 0
