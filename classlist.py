@@ -88,10 +88,10 @@ class classlist:
 		
 	# Calculate the expected info of an attribute
 	# Example list
-	# 			   (	predictValue1, 	predictValue2, 	predictValue3  )
+	# 			   (	predictValue1, 		predictValue2, 		predictValue3   )
 	#			[
-	# (attrValue1)	   [	1,			2,			3  		]
-	# (attrValue2)	   [	3,			4,			6  		]	
+	# (attrValue1)	   	   [	1,			2,			3  		]
+	# (attrValue2)	   	   [	3,			4,			6  		]	
 	#			]
 	def calculateExpectedInfo( histogramList ):
 		expectedInfo = 0
