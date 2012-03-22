@@ -90,12 +90,12 @@ class classlist:
 		return entropy
 		
 		
-	# Calculate the expected info of an attribute
+	# Calculate the expected info of an attribute from a histogram
 	# Example list
 	# 			   (	predictValue1, 		predictValue2, 		predictValue3   )
 	#			[
-	# (attrValue1)	   	   [	1,			2,			3  		]
-	# (attrValue2)	   	   [	3,			4,			6  		]	
+	# (Yes)		   	   [	1,			2,			3  		]
+	# (No)		   	   [	3,			4,			6  		]	
 	#			]
 	def calculateExpectedInfo( histogramList ):
 		expectedInfo = 0
