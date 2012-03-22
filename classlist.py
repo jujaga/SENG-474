@@ -19,6 +19,7 @@ class classlist:
 		self.addID()
 		self.classList = []
 		self.attrList = []
+		self.uniqueClassValues = []
 		self.init()
 		self.totalRecords = len( self.classList )
 		self.doSLIQ( self.attrList )
@@ -44,6 +45,9 @@ class classlist:
 				self.attrList.append( row[0: len(row) - 1] )
 			else:
 				self.classList.append( [ row[0], row[len(row) - 1], 1 ] )
+				classValues.append( row[len(row) - 1] )
+				
+		self.uniqueClassValues = list( set( classValues ) )
 	
 	# Adds rid to each record
 	# Example: ( 2 records )
