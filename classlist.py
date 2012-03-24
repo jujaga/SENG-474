@@ -16,17 +16,18 @@ class classlist:
 	# ]
 	def __init__(self, d):
 		self.data = d
-		self.addID()
+		self.addID
 		self.classList = []
 		self.attrList = []
 		self.uniqueClassValues = []
 		self.newLeaf = 1;
 		self.tree = []
 		
-		self.init()
+		self.init
 		self.totalRecords = len( self.classList )
-				
-		self.doSLIQ( self.attrList, 1, 1 )
+		
+		# The following line has an odd argument mismatch error helen - commented it out just to have proper execution for now - jeremy
+		#self.doSLIQ( self.attrList, 1, 1 )
 
 	# Creates the classlist and attributeList
 	# Example: ( 2 records )
