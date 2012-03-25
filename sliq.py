@@ -37,6 +37,7 @@ def main():
 	
 	# Process input
 	CL = classlist(data)
+	print CL.displayTree()
 	
 	# Write to file
 	#try:
