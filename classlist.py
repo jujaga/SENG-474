@@ -2,18 +2,18 @@
 # SENG 474
 # Jeremy Ho & Helen Lin
 
-import math, string#
+import math, string
 
 # Creates a decision tree using SLIQ
 # Output:
 # self.leafConnect
 #	- an array of [ parent, child ] pairs
 #	ie: [							Creates this tree structure
-#				[ 1, 2 ]							1
-#				[ 1, 3 ]					  /   |    \
-#				[ 2, 4 ]				    2    3    5
-#				[ 1, 5 ]             /
-#		 ]                        4
+#				[ 1, 2 ]						1
+#				[ 1, 3 ]					/   |   \
+#				[ 2, 4 ]				   2    3    5
+#				[ 1, 5 ]				  /
+#		]								 4
 #
 # self.leaves
 # 	- an array of leaves associated their attribute value and determines if it is the final class
@@ -49,6 +49,7 @@ class classlist:
 		
 		self.doSLIQ( self.attrList, 1, 1 )
 
+		
 	# Creates the classlist and attributeList
 	# Example: ( 2 records )
 	#
@@ -75,6 +76,7 @@ class classlist:
 		self.uniqueClassValues = list( set( classValues ) )
 		self.newLeaf += 1
 	
+	
 	# Adds rid to each record
 	# Example: ( 2 records )
 	# [
@@ -86,9 +88,9 @@ class classlist:
 		for i in range( len(self.data) ):
 			self.data[i].insert( 0, i )
 	
+	
 	# Sorts the atrribute list base on the column number
 	def sortList( self, attributeList, columnNumber ):
-		
 		attributeList.sort( key=lambda value: value[columnNumber] )
 	
 	
@@ -99,6 +101,7 @@ class classlist:
 		for record in leafList:
 			aList.append( record[colIndex] )
 		return aList
+	
 	
 	# Returns a record from a list with matching rid
 	# The list is either attribute list or classlist
@@ -169,8 +172,6 @@ class classlist:
 		return True, currentClass
 		
 		
-
-		
 	# Returns the entropy calculated by the list of probabilities
 	# make sure the list of probabilities sums up to total
 	def calculateEntropy( self, probabilities, total ):
@@ -188,11 +189,10 @@ class classlist:
 	# Example list
 	# 			   		(	predictValue1, 	predictValue2, 	predictValue3  )
 	#					[
-	# (attrValue1)		[	1,						2,						3  				]
-	# (attrValue2)		[	3,						4,						6  				]	
+	# (attrValue1)		[	1,				2,				3  				]
+	# (attrValue2)		[	3,				4,				6  				]	
 	#					]
 	def calculateExpectedInfo( self, histogramList ):
-				
 		expectedInfo = 0
 		for attrValueRow in histogramList:
 			listSum = sum( attrValueRow )
@@ -214,7 +214,6 @@ class classlist:
 	#						  if numeric, use <= as the comparing operater
 	#						  if categorical, a list of values will be given
 	def doSLIQ( self, attrLeafList, leafNum, level ):
-		
 		info = []					# holds all the expected info that have been calculated
 
 		# starting with the first attribute at index 1
@@ -258,7 +257,6 @@ class classlist:
 	# 		[ newLeafNumber, splitCondition ]
 	# ]
 	def updateLeaf( self, info, attrLeafList ):
-		
 		newLeaves = []
 		splitValue = info[5]
 		
@@ -292,7 +290,6 @@ class classlist:
 				newLeaf[2] = leafClass
 
 		return newLeaves
-	
 	
 	
 	# Returns the expected info for this categorical attribute

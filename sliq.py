@@ -7,14 +7,6 @@ from classlist import *
 
 def main():
 	"""Main program"""
-
-	# Parse input arguments
-	'''parser = argparse.ArgumentParser()
-	parser.add_argument('-i', help='input arff file', action='store',
-						required=True)
-	parser.add_argument('-o', help='output result', action='store',
-						default='out.txt')
-	args = parser.parse_args()'''
 	
 	# Read input file
 	try:
@@ -24,7 +16,6 @@ def main():
 	rawinput = []
 	for line in f:
 		rawinput.append(line[:-1].lower()) # ditch trailing newline
-	#f.close()
 	
 	# Remove non-data lines & format
 	rawdata = rawinput[rawinput.index("@data")+1:]
@@ -37,17 +28,8 @@ def main():
 	
 	# Process input
 	CL = classlist(data)
+	#print CL.leaves
 	print CL.displayTree()
-	
-	# Write to file
-	#try:
-	#	f = sys.stdout
-	#except IOError as e:
-	#	sys.exit("{}".format(e))
-	#for line in rawinput:
-	#	f.write(string.join(line,''))
-	#	f.write('\n')
-	#f.close()
 
 if __name__ == '__main__':
 	main()
