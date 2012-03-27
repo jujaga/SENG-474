@@ -2,7 +2,7 @@
 # SENG 474
 # Jeremy Ho & Helen Lin
 
-import os, sys, string
+import os, sys, string, time
 from classlist import *
 
 def main():
@@ -15,7 +15,7 @@ def main():
 		sys.exit("{}".format(e))
 	rawinput = []
 	for line in f:
-		if line.startswith("%"):
+		if line.startswith("%") or not line.strip():
 			continue
 		rawinput.append(line[:-1].lower()) # ditch trailing newline
 	
@@ -25,13 +25,13 @@ def main():
 	for line in rawdata:
 		data.append(line.split(','))
 	
-	#for line in data:
-	#	print line
-	
 	# Process input
+	start = time.time()
 	CL = classlist(data)
+	end = time.time()
 	#print CL.leaves
 	print CL.displayTree()
+	print "SLIQ took " + str(end - start) + " seconds"
 
 if __name__ == '__main__':
 	main()

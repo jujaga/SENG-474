@@ -33,7 +33,6 @@ class classlist:
 	# 	[ age, salary, marital, car ]
 	# ]
 	def __init__(self, d):
-		
 		self.data = d
 		self.addID()
 		self.classList = []
@@ -46,7 +45,6 @@ class classlist:
 		
 		self.init()
 		self.totalRecords = len( self.classList )
-		
 		self.doSLIQ( self.attrList, 1, 1 )
 
 		
@@ -65,7 +63,6 @@ class classlist:
 	#	[ rid, car, leaf ]
 	# ]
 	def init( self ):
-		
 		classValues = []
 		
 		for row in self.data:
@@ -84,7 +81,6 @@ class classlist:
 	# 	[ rid, age, salary, marital, car ]
 	# ]
 	def addID( self ):
-		
 		for i in range( len(self.data) ):
 			self.data[i].insert( 0, i )
 	
@@ -96,7 +92,6 @@ class classlist:
 	
 	# Returns an list of values of a single attribute
 	def getSingleAttrList( self, leafList, colIndex ):
-		
 		aList = []
 		for record in leafList:
 			aList.append( record[colIndex] )
@@ -106,7 +101,6 @@ class classlist:
 	# Returns a record from a list with matching rid
 	# The list is either attribute list or classlist
 	def getRecordBaseOnRID( self, aList, rid ):
-		
 		for record in aList:
 			if record[0] == rid:
 				return record
@@ -122,7 +116,6 @@ class classlist:
 	
 	# set leaf by rid
 	def setLeafByRID( self, rid, leafNumber ):
-		
 		for record in self.classList:
 			if record[0] == rid:
 				record[2] = leafNumber
@@ -130,7 +123,6 @@ class classlist:
 	
 	# Returns attribute records with the same leaf number
 	def getAttrListBaseOnLeaf( self, aList, leaf ):
-		
 		newAttrList = []
 		for record in self.classList:
 			if record[2] == leaf:
@@ -139,7 +131,6 @@ class classlist:
 	
 	
 	def removeAttr( self, aList, colIndex ):
-		
 		newList = []
 		for record in aList:
 			newList.append( record[0:colIndex] + record[colIndex+1:] )
@@ -153,7 +144,6 @@ class classlist:
 	#		[	0, 0, 0	]
 	# ]
 	def createEmptyHistogram( self, n ):
-		
 		emptyHistogram = []
 		
 		for i in range( 0, n ):
@@ -175,7 +165,6 @@ class classlist:
 	# Returns the entropy calculated by the list of probabilities
 	# make sure the list of probabilities sums up to total
 	def calculateEntropy( self, probabilities, total ):
-		
 		entropy = float(0)
 		if total != 0:
 			for probability in probabilities:
@@ -296,7 +285,6 @@ class classlist:
 	# Eaxample output:
 	# [ expectedInfo, "category", columnIndex ] 
 	def categoricalCalculation( self, leafList, colIndex ):
-		
 		attrUniqueValues = list( set(self.getSingleAttrList( leafList, colIndex )) )
 		histogram = self.createEmptyHistogram( len(attrUniqueValues) )
 		
@@ -312,7 +300,6 @@ class classlist:
 	# Eaxample output:
 	# [ expectedInfo, "numeric", columnIndex, split at value ] 
 	def numericalCalculation( self, leafList, colIndex ):
-		
 		infoList = []
 		for splitRow in leafList:
 			splitValue = splitRow[colIndex]
